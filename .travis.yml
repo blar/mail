@@ -1,0 +1,12 @@
+language: php
+
+php:
+    - 5.5
+    - 5.6
+
+before_script:
+    - pecl install http
+    - composer install
+
+after_success:
+    - php vendor/bin/coveralls -v

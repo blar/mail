@@ -1,0 +1,35 @@
+{
+    "name": "blar/mail",
+    "description": "Mail for PHP",
+    "type": "library",
+    "keywords": ["php", "mail"],
+    "homepage": "https://github.com/blar/mail/",
+    "license": "LGPL-3.0+",
+    "authors": [
+        {
+            "name": "Andreas Treichel",
+            "email": "gmblar+github@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=5.5.0",
+        "blar/mime": "@dev",
+        "blar/curl": "@dev",
+        "blar/common": "@dev"
+    },
+    "require-dev": {
+        "satooshi/php-coveralls": "dev-master"
+    },
+    "support": {
+        "source": "https://github.com/blar/mail/",
+        "issues": "https://github.com/blar/mail/issues",
+        "wiki": "https://github.com/blar/mail/wiki"
+    },
+    "autoload": {
+        "psr-4": {
+            "Blar\\Mail\\": "lib/Blar/Mail/"
+        }
+    }
+}
