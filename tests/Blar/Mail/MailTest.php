@@ -50,6 +50,22 @@ class MailTest extends TestCase {
         $mail->push('Hello World');
     }
 
+    public function testMimeParts() {
+        $mail = new Mail();
+        $mail->setBoundary('4cda2d9a46f80b7b49b97e0417fdcc86095967bf');
+        $mail->setFrom('foo@example.com');
+        $mail->setTo('bar@example.com');
+        
+        $headers = $mail->getHeaders();
+        $headers->set('From', 'foo@example.com');
+        $headers->set('To', 'bar@example.com');
+        $headers->set('Subject', 'Hello World');
+        $mail->push("Content-Type: text/plain\r\n\r\nFoo");
+        $mail->push("Content-Type: text/plain\r\n\r\nBar");
+
+        $this->assertStringEqualsFile(__DIR__.'/MailTest_MimeParts.eml', str_replace("\r", "", $mail));
+    }
+
     public function testCurlTransport() {
         $mail = new Mail();
         $mail->setTo('foo@example.com');

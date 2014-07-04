@@ -2,7 +2,8 @@
 
 namespace Blar\Mail;
 
-use Blar\Common\Collections\Collection;
+use Blar\Common\Collections\Collection,
+    Exception;
 
 /**
  * @author Andreas Treichel <gmblar+github@gmail.com>
@@ -24,10 +25,10 @@ class AddressCollection extends Collection {
         $addressCollection = new static($result);
         return $addressCollection->map(function($user) {
             if(!$user->host) {
-                continue;
+                return NULL;
             }
             if($user->host == '.SYNTAX-ERROR.') {
-                continue;
+                throw new Exception('Missing or invalid host name after');
             }
             $mailAddress = new MailAddress();
             if(property_exists($user, 'personal')) {

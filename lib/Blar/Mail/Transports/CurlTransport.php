@@ -6,12 +6,15 @@ use Blar\Mail\Mail,
     Blar\Curl\Curl;
 
 /**
+ * SMTP Transport with Curl.
+ *
+ * @license LGPL2+
  * @author Andreas Treichel <gmblar+github@gmail.com>
  */
 class CurlTransport implements Transport {
 
     /**
-     * @var Blar\Curl
+     * @var Blar\Curl $curl
      */
     protected $curl;
 

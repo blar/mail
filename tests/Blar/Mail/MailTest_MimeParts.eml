@@ -1,0 +1,16 @@
+From: foo@example.com
+To: bar@example.com
+Subject: Hello World
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary=4cda2d9a46f80b7b49b97e0417fdcc86095967bf
+
+
+--4cda2d9a46f80b7b49b97e0417fdcc86095967bf
+Content-Type: text/plain
+
+Foo
+--4cda2d9a46f80b7b49b97e0417fdcc86095967bf
+Content-Type: text/plain
+
+Bar
+--4cda2d9a46f80b7b49b97e0417fdcc86095967bf--

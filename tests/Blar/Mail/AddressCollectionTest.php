@@ -86,4 +86,25 @@ class AddressCollectionTest extends TestCase {
         $this->assertEquals('Foo 23 <foo@example.com>, Bar 42 <bar@example.com>', (string) $addressCollection);
     }
 
+    /**
+     * @expectedException Exception
+     */
+    public function testInvalidMultipleAddress() {
+        $addressCollection = AddressCollection::parse('foo@, bar@');
+
+        $this->assertEquals(array('foo@example.com', 'bar@example.com'), $addressCollection->getEmails()->getArrayCopy());
+
+        $this->assertEquals('foo@example.com', $addressCollection[0]->getEmail());
+        $this->assertEquals('Foo 23', $addressCollection[0]->getUserName());
+        $this->assertEquals('foo', $addressCollection[0]->getMailbox());
+        $this->assertEquals('example.com', $addressCollection[0]->getHostName());
+
+        $this->assertEquals('bar@example.com', $addressCollection[1]->getEmail());
+        $this->assertEquals('Bar 42', $addressCollection[1]->getUserName());
+        $this->assertEquals('bar', $addressCollection[1]->getMailbox());
+        $this->assertEquals('example.com', $addressCollection[1]->getHostName());
+
+        $this->assertEquals('Foo 23 <foo@example.com>, Bar 42 <bar@example.com>', (string) $addressCollection);
+    }
+
 }
