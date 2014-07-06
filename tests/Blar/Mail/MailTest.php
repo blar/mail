@@ -50,6 +50,14 @@ class MailTest extends TestCase {
         $mail->push('Hello World');
     }
 
+    public function testBoundary() {
+        $mail = new Mail();
+        $this->assertEquals($mail->getBoundary(), $mail->getBoundary());
+        $this->assertEquals($mail->setBoundary('foo')->getBoundary(), $mail->getBoundary());
+        $this->assertEquals('foo', $mail->getBoundary());
+        $this->assertNotEquals($mail->getBoundary(), $mail->setBoundary('bar')->getBoundary());
+    }
+
     public function testMimeParts() {
         $mail = new Mail();
         $mail->setBoundary('4cda2d9a46f80b7b49b97e0417fdcc86095967bf');
