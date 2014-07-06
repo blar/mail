@@ -92,13 +92,13 @@ class MailTest extends TestCase {
         $headers->set('Content-Type', 'text/html');
         $mime->push('<p>Hello World</p>');
         $mail->push($mime);
-        
+
         $credentials = getEnv('MAILTRAP_SMTP_CREDENTIALS');
         if(!$credentials) {
             $this->markTestSkipped('Credentials for Mailtrap not found!');
         }
         $credentials = explode(':', $credentials, 2);
-        $transport = new CurlTransport('mailtrap.io');
+        $transport = new CurlTransport('mailtrap.io', 2525);
         $transport->setCredentials($credentials[0], $credentials[1]);
         $transport->sendMail($mail);
         

@@ -78,10 +78,9 @@ class CurlTransport implements Transport {
         fwrite($handle, $mail);
         rewind($handle);
         
-        $this->getCurl()->setOption(CURLOPT_VERBOSE, true);
-        $this->getCurl()->setOption(CURLOPT_PUT, true);
         $this->getCurl()->setOption(CURLOPT_MAIL_FROM, $mail->getFrom());
         $this->getCurl()->setOption(CURLOPT_MAIL_RCPT, array($mail->getTo()));
+        $this->getCurl()->setOption(CURLOPT_PUT, true);
         $this->getCurl()->setOption(CURLOPT_INFILE, $handle);
         $this->getCurl()->execute();
         
