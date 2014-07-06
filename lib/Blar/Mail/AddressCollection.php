@@ -25,10 +25,10 @@ class AddressCollection extends Collection {
         $addressCollection = new static($result);
         return $addressCollection->map(function($user) {
             if(!$user->host) {
-                return NULL;
+                throw new Exception('Missing or invalid host name');
             }
             if($user->host == '.SYNTAX-ERROR.') {
-                throw new Exception('Missing or invalid host name after');
+                throw new Exception('Missing or invalid host name');
             }
             $mailAddress = new MailAddress();
             if(property_exists($user, 'personal')) {
