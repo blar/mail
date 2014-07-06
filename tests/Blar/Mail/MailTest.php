@@ -89,14 +89,19 @@ class MailTest extends TestCase {
             $from->setMailbox(getEnv('USER'));
 
             $headers->set('From', $from);
-            $headers->set('Subject', sprintf('CurlTransport: %s (%s)', getEnv('TRAVIS_REPO_SLUG'), getEnv('TRAVIS_JOB_NUMBER')));
+            $headers->set('Subject', sprintf(
+                '%s #%s (%s)',
+                getEnv('TRAVIS_REPO_SLUG'),
+                getEnv('TRAVIS_JOB_NUMBER'),
+                __METHOD__
+            ));
             $headers->set('Content-Type', 'text/plain');
             $mail->push(sprintf(
-                "Repository: %s\nJob: %s\nCommit: %s\nOS: %s\nPHP-Version: %s\n",
+                "Repository: %s\nJob: %s\nCommit: %s\nCommit-Range: %s\nPHP-Version: %s\n",
                 getEnv('TRAVIS_REPO_SLUG'),
                 getEnv('TRAVIS_JOB_NUMBER'),
                 getEnv('TRAVIS_COMMIT'),
-                getEnv('TRAVIS_OS_NAME'),
+                getEnv('TRAVIS_COMMIT_RANGE'),
                 getEnv('TRAVIS_PHP_VERSION')
             ));
         }
@@ -115,7 +120,7 @@ class MailTest extends TestCase {
         $transport->setCredentials($credentials[0], $credentials[1]);
         $transport->sendMail($mail);
         
-        $this->markTestIncomplete('Check sent mail via Mailtrap is not implemented');
+        # $this->markTestIncomplete('Check sent mail via Mailtrap is not implemented');
     }
 
 }
