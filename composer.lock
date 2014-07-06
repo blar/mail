@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/blar/common.git",
-                "reference": "e45c4c5e3f386a80eda0931f4b1ba9b5b86cab9a"
+                "reference": "87793e725c4d2cfcf48edecdb72d11367cb57a7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blar/common/zipball/e45c4c5e3f386a80eda0931f4b1ba9b5b86cab9a",
-                "reference": "e45c4c5e3f386a80eda0931f4b1ba9b5b86cab9a",
+                "url": "https://api.github.com/repos/blar/common/zipball/87793e725c4d2cfcf48edecdb72d11367cb57a7c",
+                "reference": "87793e725c4d2cfcf48edecdb72d11367cb57a7c",
                 "shasum": ""
             },
             "require": {
@@ -48,7 +48,7 @@
                 "common",
                 "php"
             ],
-            "time": "2014-07-03 15:03:16"
+            "time": "2014-07-06 11:56:07"
         },
         {
             "name": "blar/curl",
