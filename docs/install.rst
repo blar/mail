@@ -22,4 +22,4 @@ Installation mit Git
    $ git clone https://github.com/blar/mail.git
 
 
-:: _Composer: http://getcomposer.org/
+:: _Composer http://getcomposer.org/
