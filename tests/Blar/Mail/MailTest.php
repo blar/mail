@@ -71,7 +71,7 @@ class MailTest extends TestCase {
         $mail->setTo('foo@example.com');
         
         $headers = $mail->getHeaders();
-        $headers->set('From', 'foobar@example.com');
+        $headers->set('From', 'bar@example.com');
         $headers->set('To', 'foo@example.com');
         $headers->set('Subject', 'Testnachricht');
         $headers->set('X-Foo', 23);

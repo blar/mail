@@ -107,4 +107,14 @@ class AddressCollectionTest extends TestCase {
         $this->assertEquals('Foo 23 <foo@example.com>, Bar 42 <bar@example.com>', (string) $addressCollection);
     }
 
+    public function testFactory() {
+        $addressCollection1 = new AddressCollection();
+        $addressCollection1->push(new MailAddress('foo@example.com', 'Foo 23'));
+        $addressCollection1->push(new MailAddress('bar@example.com', 'Bar 42'));
+        
+        $addressCollection2 = AddressCollection::factory($addressCollection1);
+        
+        $this->assertEquals($addressCollection1, $addressCollection2);
+    }
+
 }
