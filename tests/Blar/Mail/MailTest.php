@@ -79,21 +79,34 @@ class MailTest extends TestCase {
         $mail->setTo('foo@example.com');
         
         $headers = $mail->getHeaders();
-        $headers->set('From', 'bar@example.com');
         $headers->set('To', 'foo@example.com');
-        $headers->set('Subject', 'Testnachricht');
         $headers->set('X-Foo', 23);
         $headers->set('X-Bar', 42);
         $headers->set('X-Foo-Bar', 1337);
-        $mail->push("Content-Type: text/plain\r\n\r\nFoo");
         
-        $mime = new Mime();
-        $headers = $mime->getHeaders();
-        $headers->set('Content-Type', 'text/html');
-        $mime->push('<p>Hello World</p>');
-        $mail->push($mime);
+        if(getEnv('TRAVIS')) {
+            $from = new MailAddress();
+            $from->setMailbox(getEnv('USER'));
 
+            $headers->set('From', $from);
+            $headers->set('Subject', sprintf('CurlTransport: %s (%s)', getEnv('TRAVIS_REPO_SLUG'), getEnv('TRAVIS_JOB_NUMBER')));
+            $headers->set('Content-Type', 'text/plain');
+            $mail->push(sprintf(
+                "Repository: %s\nJob: %s\nCommit: %s\nOS: %s\nPHP-Version: %s\n",
+                getEnv('TRAVIS_REPO_SLUG'),
+                getEnv('TRAVIS_JOB_NUMBER'),
+                getEnv('TRAVIS_COMMIT'),
+                getEnv('TRAVIS_OS_NAME'),
+                getEnv('TRAVIS_PHP_VERSION')
+            ));
+        }
+        else {
+            $headers->set('From', 'bar@example.com');
+            $mail->push("Hello World");
+        }
+        
         $credentials = getEnv('MAILTRAP_SMTP_CREDENTIALS');
+
         if(!$credentials) {
             $this->markTestSkipped('Credentials for Mailtrap not found!');
         }
