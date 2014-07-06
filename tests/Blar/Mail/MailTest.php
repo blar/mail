@@ -87,6 +87,7 @@ class MailTest extends TestCase {
         if(getEnv('TRAVIS')) {
             $from = new MailAddress();
             $from->setMailbox(getEnv('USER'));
+            $from->setHostName(getHostName());
 
             $headers->set('From', $from);
             $headers->set('Subject', sprintf(
