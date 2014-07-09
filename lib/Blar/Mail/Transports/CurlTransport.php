@@ -74,17 +74,11 @@ class CurlTransport implements Transport {
      * @return self
      */
     public function sendMail(Mail $mail) {
-        $handle = fopen('php://temp', 'w');
-        fwrite($handle, $mail);
-        rewind($handle);
-        
         $this->getCurl()->setOption(CURLOPT_MAIL_FROM, $mail->getFrom());
         $this->getCurl()->setOption(CURLOPT_MAIL_RCPT, array($mail->getTo()));
-        $this->getCurl()->setOption(CURLOPT_PUT, true);
-        $this->getCurl()->setOption(CURLOPT_INFILE, $handle);
+        $this->getCurl()->setMethod('PUT');
+        $this->getCurl()->setPutString($mail);
         $this->getCurl()->execute();
-        
-        fclose($handle);
         return $this;
     }
 
