@@ -113,8 +113,10 @@ class AddressCollectionTest extends TestCase {
         $addressCollection1->push(new MailAddress('bar@example.com', 'Bar 42'));
         
         $addressCollection2 = AddressCollection::factory($addressCollection1);
-        
         $this->assertEquals($addressCollection1, $addressCollection2);
+
+        $addressCollection = AddressCollection::factory('foo@example.com, bar@example.com');
+        $this->assertEquals('<foo@example.com>, <bar@example.com>', (string) $addressCollection);
     }
 
 }
