@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/blar/common.git",
-                "reference": "8e12f7d8ff49c46cdddc1316c1a59e45f0b58397"
+                "reference": "a263a9115058e834aabddd0763116dff157f7beb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blar/common/zipball/8e12f7d8ff49c46cdddc1316c1a59e45f0b58397",
-                "reference": "8e12f7d8ff49c46cdddc1316c1a59e45f0b58397",
+                "url": "https://api.github.com/repos/blar/common/zipball/a263a9115058e834aabddd0763116dff157f7beb",
+                "reference": "a263a9115058e834aabddd0763116dff157f7beb",
                 "shasum": ""
             },
             "require": {
@@ -48,7 +48,7 @@
                 "common",
                 "php"
             ],
-            "time": "2014-07-06 12:06:21"
+            "time": "2014-07-09 21:17:35"
         },
         {
             "name": "blar/curl",
@@ -56,12 +56,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/blar/curl.git",
-                "reference": "662175d2b0b4d0a3c3b6a47cc7d1af99564cd1fb"
+                "reference": "136ecdbd274571635fb7b22b70cc251682a98d8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blar/curl/zipball/662175d2b0b4d0a3c3b6a47cc7d1af99564cd1fb",
-                "reference": "662175d2b0b4d0a3c3b6a47cc7d1af99564cd1fb",
+                "url": "https://api.github.com/repos/blar/curl/zipball/136ecdbd274571635fb7b22b70cc251682a98d8f",
+                "reference": "136ecdbd274571635fb7b22b70cc251682a98d8f",
                 "shasum": ""
             },
             "require": {
@@ -92,7 +92,7 @@
                 "curl",
                 "php"
             ],
-            "time": "2014-07-06 12:05:24"
+            "time": "2014-07-09 21:19:15"
         },
         {
             "name": "blar/mime",
@@ -100,12 +100,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/blar/mime.git",
-                "reference": "ceebeebc102b17af5bf9a73360cd4842657ed8e5"
+                "reference": "3c1f74a40bbd496e94ae5a85883f80c8a3bd7c39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blar/mime/zipball/ceebeebc102b17af5bf9a73360cd4842657ed8e5",
-                "reference": "ceebeebc102b17af5bf9a73360cd4842657ed8e5",
+                "url": "https://api.github.com/repos/blar/mime/zipball/3c1f74a40bbd496e94ae5a85883f80c8a3bd7c39",
+                "reference": "3c1f74a40bbd496e94ae5a85883f80c8a3bd7c39",
                 "shasum": ""
             },
             "require": {
@@ -137,7 +137,7 @@
                 "mime",
                 "php"
             ],
-            "time": "2014-07-06 12:04:39"
+            "time": "2014-07-09 21:19:58"
         }
     ],
     "packages-dev": [
