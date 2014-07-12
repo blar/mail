@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "81d8e4ae131bc026c6f8d6c4257b0d72",
+    "hash": "28667f1c7d1cc44969143ca415a8d792",
     "packages": [
         {
             "name": "blar/common",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/blar/common.git",
-                "reference": "a263a9115058e834aabddd0763116dff157f7beb"
+                "reference": "b043e26579660de816e2fd0df202dc5b60552f94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blar/common/zipball/a263a9115058e834aabddd0763116dff157f7beb",
-                "reference": "a263a9115058e834aabddd0763116dff157f7beb",
+                "url": "https://api.github.com/repos/blar/common/zipball/b043e26579660de816e2fd0df202dc5b60552f94",
+                "reference": "b043e26579660de816e2fd0df202dc5b60552f94",
                 "shasum": ""
             },
             "require": {
@@ -48,7 +48,7 @@
                 "common",
                 "php"
             ],
-            "time": "2014-07-09 21:17:35"
+            "time": "2014-07-09 21:27:03"
         },
         {
             "name": "blar/curl",
@@ -56,12 +56,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/blar/curl.git",
-                "reference": "136ecdbd274571635fb7b22b70cc251682a98d8f"
+                "reference": "1beedc6e789d901d32926d730e1cd3bd3a89103f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blar/curl/zipball/136ecdbd274571635fb7b22b70cc251682a98d8f",
-                "reference": "136ecdbd274571635fb7b22b70cc251682a98d8f",
+                "url": "https://api.github.com/repos/blar/curl/zipball/1beedc6e789d901d32926d730e1cd3bd3a89103f",
+                "reference": "1beedc6e789d901d32926d730e1cd3bd3a89103f",
                 "shasum": ""
             },
             "require": {
@@ -92,7 +92,7 @@
                 "curl",
                 "php"
             ],
-            "time": "2014-07-09 21:19:15"
+            "time": "2014-07-09 21:26:00"
         },
         {
             "name": "blar/mime",
@@ -100,16 +100,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/blar/mime.git",
-                "reference": "3c1f74a40bbd496e94ae5a85883f80c8a3bd7c39"
+                "reference": "cffe3a2ab2414afd91343c9f79be651658449e10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blar/mime/zipball/3c1f74a40bbd496e94ae5a85883f80c8a3bd7c39",
-                "reference": "3c1f74a40bbd496e94ae5a85883f80c8a3bd7c39",
+                "url": "https://api.github.com/repos/blar/mime/zipball/cffe3a2ab2414afd91343c9f79be651658449e10",
+                "reference": "cffe3a2ab2414afd91343c9f79be651658449e10",
                 "shasum": ""
             },
             "require": {
-                "blar/common": "@dev",
+                "blar/common": "*",
                 "php": ">=5.5.0"
             },
             "require-dev": {
@@ -137,7 +137,7 @@
                 "mime",
                 "php"
             ],
-            "time": "2014-07-09 21:19:58"
+            "time": "2014-07-12 16:19:57"
         }
     ],
     "packages-dev": [
@@ -661,7 +661,7 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "stability-flags": {
         "blar/mime": 20,
         "blar/curl": 20,

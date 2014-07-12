@@ -12,12 +12,12 @@
         }
     ],
     "minimum-stability": "dev",
-    "prefer-stable": true,
     "require": {
         "php": ">=5.5.0",
-        "blar/mime": "@dev",
-        "blar/curl": "@dev",
-        "blar/common": "@dev"
+        "ext-imap": "*",
+        "blar/mime": "dev-master",
+        "blar/curl": "dev-master",
+        "blar/common": "dev-master"
     },
     "require-dev": {
         "satooshi/php-coveralls": "dev-master"
