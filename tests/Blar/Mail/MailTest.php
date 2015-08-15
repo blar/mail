@@ -9,6 +9,12 @@ use PHPUnit_Framework_TestCase as TestCase,
 
 class MailTest extends TestCase {
 
+    public function setUp() {
+        set_error_handler(function() {
+            return true;
+        }, E_NOTICE);
+    }
+
     public function testSendmailTransport() {
         $this->markTestSkipped('How to use Sendmail with Mailtrap?');
 
@@ -20,7 +26,7 @@ class MailTest extends TestCase {
         $mail->setHeader('X-Bar', 42);
         $mail->setHeader('X-Foo-Bar', 1337);
         $mail->setBody('Hello World');
-        
+
         $transport = new SendmailTransport();
         $transport->sendMail($mail);
     }
@@ -28,7 +34,7 @@ class MailTest extends TestCase {
     public function testSimple() {
         $mail = new Mail();
         $mail->setTo('foo@example.com');
-        
+
         $headers = $mail->getHeaders();
         $headers->set('From', 'foobar@example.com');
         $headers->set('To', 'foo@example.com');
@@ -39,7 +45,7 @@ class MailTest extends TestCase {
     public function testHeaders() {
         $mail = new Mail();
         $mail->setTo('foo@example.com');
-        
+
         $headers = $mail->getHeaders();
         $headers->set('From', 'foobar@example.com');
         $headers->set('To', 'foo@example.com');
@@ -63,7 +69,7 @@ class MailTest extends TestCase {
         $mail->setBoundary('4cda2d9a46f80b7b49b97e0417fdcc86095967bf');
         $mail->setFrom('foo@example.com');
         $mail->setTo('bar@example.com');
-        
+
         $headers = $mail->getHeaders();
         $headers->set('From', 'foo@example.com');
         $headers->set('To', 'bar@example.com');
@@ -71,19 +77,19 @@ class MailTest extends TestCase {
         $mail->push("Content-Type: text/plain\r\n\r\nFoo");
         $mail->push("Content-Type: text/plain\r\n\r\nBar");
 
-        $this->assertStringEqualsFile(__DIR__.'/MailTest_MimeParts.eml', str_replace("\r", "", $mail));
+        $this->assertStringEqualsFile(__DIR__ . '/MailTest_MimeParts.eml', str_replace("\r", "", $mail));
     }
 
     public function testCurlTransport() {
         $mail = new Mail();
         $mail->setTo('foo@example.com');
-        
+
         $headers = $mail->getHeaders();
         $headers->set('To', 'foo@example.com');
         $headers->set('X-Foo', 23);
         $headers->set('X-Bar', 42);
         $headers->set('X-Foo-Bar', 1337);
-        
+
         if(getEnv('TRAVIS')) {
             $from = new MailAddress();
             $from->setMailbox(getEnv('USER'));
@@ -110,7 +116,7 @@ class MailTest extends TestCase {
             $headers->set('From', 'bar@example.com');
             $mail->push("Hello World");
         }
-        
+
         $credentials = getEnv('MAILTRAP_SMTP_CREDENTIALS');
 
         if(!$credentials) {
@@ -120,7 +126,7 @@ class MailTest extends TestCase {
         $transport = new CurlTransport('mailtrap.io', 2525);
         $transport->setCredentials($credentials[0], $credentials[1]);
         $transport->sendMail($mail);
-        
+
         # $this->markTestIncomplete('Check sent mail via Mailtrap is not implemented');
     }
 

@@ -1,17 +1,24 @@
 <?php
 
+/**
+ * @author Andreas Treichel <gmblar+github@gmail.com>
+ */
+
 namespace Blar\Mail\Transports;
 
 use Blar\Mail\Mail;
 
 /**
- * @author Andreas Treichel <gmblar+github@gmail.com>
+ * Interface Transport
+ *
+ * @package Blar\Mail\Transports
  */
 interface Transport {
 
     /**
-     * @param Blar\Mail\Mail $mail Mail.
-     * @return self
+     * @param Mail $mail Mail.
+     *
+     * @return $this
      */
     public function sendMail(Mail $mail);
 

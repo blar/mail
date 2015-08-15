@@ -1,26 +1,32 @@
 <?php
 
+/**
+ * @author Andreas Treichel <gmblar+github@gmail.com>
+ */
+
 namespace Blar\Mail;
 
 /**
- * @author Andreas Treichel <gmblar+github@gmail.com>
+ * Class MailAddress
+ *
+ * @package Blar\Mail
  */
 class MailAddress {
 
     /**
      * @var string
      */
-    protected $mailbox;
-    
-    /**
-     * @var string
-     */
-    protected $hostName;
+    private $mailbox;
 
     /**
      * @var string
      */
-    protected $userName;
+    private $hostName;
+
+    /**
+     * @var string
+     */
+    private $userName;
 
     /**
      * @param string $email E-Mail.
@@ -35,64 +41,25 @@ class MailAddress {
      * @return string
      */
     public function __toString() {
-        $result = '<'.$this->getEmail().'>';
+        $result = '<' . $this->getEmail() . '>';
         if($this->getUserName()) {
-            $result = $this->getUserName().' '.$result;
+            $result = $this->getUserName() . ' ' . $result;
         }
         return $result;
     }
 
     /**
-     * @param string $mailbox Mailbox.
-     * @return $this
-     */
-    public function setMailbox($mailbox) {
-        $this->mailbox = $mailbox;
-        return $this;
-    }
-
-    /**
      * @return string
      */
-    public function getMailbox() {
-        return $this->mailbox;
+    public function getEmail() {
+        return $this->getMailbox() . '@' . $this->getHostName();
     }
 
-    /**
-     * @param string $hostName Hostname.
-     * @return $this
-     */
-    public function setHostName($hostName) {
-        $this->hostName = $hostName;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getHostName() {
-        return $this->hostName;
-    }
-
-    /**
-     * @param string $userName Username.
-     * @return $this
-     */
-    public function setUserName($userName) {
-        $this->userName = $userName;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUserName() {
-        return $this->userName;
-    }
 
     /**
      * @param string $email E-Mail.
-     * @return self
+     *
+     * @return $this
      */
     public function setEmail($email) {
         $parts = explode('@', $email, 2);
@@ -108,8 +75,52 @@ class MailAddress {
     /**
      * @return string
      */
-    public function getEmail() {
-        return $this->getMailbox().'@'.$this->getHostName();
+    public function getMailbox() {
+        return $this->mailbox;
+    }
+
+    /**
+     * @param string $mailbox Mailbox.
+     *
+     * @return $this
+     */
+    public function setMailbox($mailbox) {
+        $this->mailbox = $mailbox;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHostName() {
+        return $this->hostName;
+    }
+
+    /**
+     * @param string $hostName Hostname.
+     *
+     * @return $this
+     */
+    public function setHostName($hostName) {
+        $this->hostName = $hostName;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUserName() {
+        return $this->userName;
+    }
+
+    /**
+     * @param string $userName Username.
+     *
+     * @return $this
+     */
+    public function setUserName($userName) {
+        $this->userName = $userName;
+        return $this;
     }
 
 }

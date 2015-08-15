@@ -9,7 +9,7 @@
          stopOnFailure="false"
          stopOnIncomplete="false"
          stopOnSkipped="false"
-         syntaxCheck="false"
+         syntaxCheck="true"
          bootstrap="tests/bootstrap.php"
          verbose="false">
 

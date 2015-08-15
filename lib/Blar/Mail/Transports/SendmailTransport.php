@@ -1,17 +1,24 @@
 <?php
 
+/**
+ * @author Andreas Treichel <gmblar+github@gmail.com>
+ */
+
 namespace Blar\Mail\Transports;
 
 use Blar\Mail\Mail;
 
 /**
- * @author Andreas Treichel <gmblar+github@gmail.com>
+ * Class SendmailTransport
+ *
+ * @package Blar\Mail\Transports
  */
 class SendmailTransport implements Transport {
 
     /**
-     * @param Blar\Mail\Mail $mail Mail.
-     * @return self
+     * @param Mail $mail Mail.
+     *
+     * @return $this
      */
     public function sendMail(Mail $mail) {
         $mail = clone $mail;

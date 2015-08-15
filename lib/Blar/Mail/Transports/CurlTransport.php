@@ -1,34 +1,45 @@
 <?php
 
-namespace Blar\Mail\Transports;
-
-use Blar\Mail\Mail,
-    Blar\Curl\Curl;
-
 /**
  * SMTP Transport with Curl.
  *
- * @license LGPL2+
  * @author Andreas Treichel <gmblar+github@gmail.com>
+ */
+
+namespace Blar\Mail\Transports;
+
+use Blar\Credentials\BasicCredentials;
+use Blar\Curl\Curl;
+use Blar\Mail\Mail;
+
+/**
+ * Class CurlTransport
+ *
+ * @package Blar\Mail\Transports
  */
 class CurlTransport implements Transport {
 
     /**
-     * @var Blar\Curl $curl
+     * @var Curl $curl
      */
-    protected $curl;
+    private $curl;
 
-    public function __construct($hostname = '127.0.0.1', $port = NULL, $secure = false) {
+    /**
+     * @param string $hostname
+     * @param int $port
+     * @param bool $secure
+     */
+    public function __construct($hostname = 'localhost', $port = NULL, $secure = FALSE) {
         $url = $this->createConnectionUrl($hostname, $port, $secure);
         $this->setCurl(new Curl($url));
     }
 
     /**
      * @param string $hostName HostName.
-     * @param integer $port Port.
+     * @param int $port Port.
      * @param boolean $secure Secure.
      */
-    protected function createConnectionUrl($hostName, $port, $secure) {
+    protected function createConnectionUrl($hostName, $port = NULL, $secure = FALSE) {
         $url = '';
         if($secure) {
             $url .= 'smtps://';
@@ -38,14 +49,32 @@ class CurlTransport implements Transport {
         }
         $url .= $hostName;
         if($port) {
-            $url .= ':'.$port;
+            $url .= ':' . $port;
         }
         return $url;
     }
 
     /**
-     * @param Blar\Curl $curl Curl
-     * @return self
+     * @param BasicCredentials $credentials
+     *
+     * @return $this
+     */
+    public function setCredentials(BasicCredentials $credentials) {
+        $this->getCurl()->setOption(CURLOPT_USERPWD, $credentials->getUserName() . ':' . $credentials->getPassword());
+        return $this;
+    }
+
+    /**
+     * @return Curl
+     */
+    public function getCurl() {
+        return $this->curl;
+    }
+
+    /**
+     * @param Curl $curl Curl
+     *
+     * @return $this
      */
     public function setCurl(Curl $curl) {
         $this->curl = $curl;
@@ -53,29 +82,13 @@ class CurlTransport implements Transport {
     }
 
     /**
-     * @return Blar\Curl
-     */
-    public function getCurl() {
-        return $this->curl;
-    }
-
-    /**
-     * @param string $userName Username.
-     * @param string $password Password.
-     * @return self
-     */
-    public function setCredentials($username, $password) {
-        $this->getCurl()->setOption(CURLOPT_USERPWD, $username.':'.$password);
-        return $this;
-    }
-
-    /**
-     * @param Blar\Mail\Mail $mail Mail.
-     * @return self
+     * @param Mail $mail Mail.
+     *
+     * @return $this
      */
     public function sendMail(Mail $mail) {
         $this->getCurl()->setOption(CURLOPT_MAIL_FROM, $mail->getFrom());
-        $this->getCurl()->setOption(CURLOPT_MAIL_RCPT, array($mail->getTo()));
+        $this->getCurl()->setOption(CURLOPT_MAIL_RCPT, [$mail->getTo()]);
         $this->getCurl()->setMethod('PUT');
         $this->getCurl()->setPutString($mail);
         $this->getCurl()->execute();
